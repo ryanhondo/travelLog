@@ -629,45 +629,21 @@
       <section id="journal">
         <div class="section-heading">Journal</div>
 
-        <!-- ENTRY 1 — most recent at top -->
-        <article class="entry">
-          <!-- Replace this placeholder with a real <img> tag once you have photos:
-               <img class="entry-image" src="your-photo.jpg" alt="Description"> -->
-          <div class="entry-image-placeholder">📷 Add a photo here</div>
-          <div class="entry-body">
-            <div class="entry-meta">
-              <span class="entry-date">April 2026</span>
-              <span class="entry-location">📍 Rotorua</span>
-              <span class="entry-author">by Your Name</span>
-            </div>
-            <h2 class="entry-title">The smell grows on you (sort of)</h2>
-            <p class="entry-text">
-              Replace this with your own writing! This is where you'd describe your day —
-              what you saw, where you slept, what you ate. Keep it casual, keep it honest.
-              People love reading real travel writing, not polished PR copy. Tell the story
-              of the thing that went wrong, or the unexpected person you met, or the view
-              that made you pull over.
-            </p>
-          </div>
-        </article>
+	{% for post in site.posts %}
+  	<article class="entry">
+	  <div class="entry">
+	    <div class="entry-body">
+	      <span class="entry-date">{{ post.date | date: "%B %Y" }}</span>
+	    </div>
 
-        <!-- ENTRY 2 -->
-        <article class="entry">
-          <div class="entry-image-placeholder">📷 Add a photo here</div>
-          <div class="entry-body">
-            <div class="entry-meta">
-              <span class="entry-date">March 2026</span>
-              <span class="entry-location">📍 Tongariro</span>
-              <span class="entry-author">by Your Name</span>
-            </div>
-            <h2 class="entry-title">The Alpine Crossing nearly broke us</h2>
-            <p class="entry-text">
-              Another placeholder — swap this out for your Tongariro story. Once you add
-              more entries, the newest one always goes at the TOP of this list.
-            </p>
-          </div>
-        </article>
+	    <h2 class="entry-title">{{ post.title }}</h2>
 
+	    <p class='entry-text'>
+	      {{ post.content }}
+	    </p>
+	  </div>
+	</article>
+	{% endfor %}	    
       </section>
 
 
