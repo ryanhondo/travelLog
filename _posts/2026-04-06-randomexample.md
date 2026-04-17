@@ -1,10 +1,10 @@
 ---
-Layout: post
+layout: post
 title: "My First Post"
-date: "2025-04-17
+date: "2026-04-17"
 ---
 
-##Day One in New Zealand
+## Day One in New Zealand
 
 Just landed in Auckland and everything already feels different — the air, the light, even the plants.
 
@@ -22,7 +22,7 @@ This trip is going to be about:
 ---
 
 ### Photo
-![Auckland waterfront](/_images/auckland.jpg)
+![Auckland waterfront](/_assets/_images/auckland.jpg)
 
 ---
 
