@@ -1,4 +1,5 @@
 ---
+Layout: post
 title: "My First Post"
 date: "2025-04-17
 ---
@@ -21,7 +22,7 @@ This trip is going to be about:
 ---
 
 ### Photo
-![Auckland waterfront](/photos/auckland.jpg)
+![Auckland waterfront](/_images/auckland.jpg)
 
 ---
 
