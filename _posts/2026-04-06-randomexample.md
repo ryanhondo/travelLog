@@ -1,12 +1,28 @@
 ---
-title: "Random Test Post"
-date: "2025-04-06
+title: "My First Post"
+date: "2025-04-17
 ---
 
-This is a text example piece of text to better understand how texts adds to the site. 
+##Day One in New Zealand
 
-I wonder what doing this formatting will do. 
+Just landed in Auckland and everything already feels different — the air, the light, even the plants.
 
+### What I did today
+- Walked around the city
+- Got coffee (way too much)
+- Started setting up this blog
 
+### Thoughts
+This trip is going to be about:
+- Exploring new places  
+- Getting outside as much as possible  
+- Documenting everything
 
-hello, we did some stuff. 
+---
+
+### Photo
+![Auckland waterfront](/photos/auckland.jpg)
+
+---
+
+That’s it for day one — more soon.
