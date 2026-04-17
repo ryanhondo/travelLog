@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My First Post"
-date: "2026-04-17"
+date: 2026-04-17
 ---
 
 ## Day One in New Zealand
