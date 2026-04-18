@@ -25,7 +25,7 @@ This trip is going to be about:
 ---
 
 ### Photo
-![Auckland waterfront](/_assets/_images/auckland.jpg)
+![Auckland waterfront](/assets/_images/auckland.jpg)
 
 ---
 
