@@ -1,802 +1,134 @@
----
----
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lily and Ryan's Travel Log</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-
-
-  <style>
-    /* =============================================
-       CSS VARIABLES — change these to restyle the
-       whole site from one place
-    ============================================= */
-    :root {
-      --cream:   #F5F0E8;
-      --paper:   #FDFBF7;
-      --forest:  #2D4A3E;
-      --moss:    #4A7C6F;
-      --sand:    #C4A882;
-      --ink:     #1E1E1B;
-      --muted:   #7A7568;
-      --border:  #DDD8CC;
-      --sidebar-width: 260px;
-      --font-serif: 'Lora', Georgia, serif;
-      --font-sans:  'DM Sans', sans-serif;
-    }
-
-    /* =============================================
-       RESET & BASE
-    ============================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-
-    a { color: var(--forest); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    img { max-width: 100%; display: block; border-radius: 6px; }
-
-/* =============================================
-       TICKER BANNER (top of page)
-    ============================================= */
-    .ticker-wrap {
-      background: var(--forest);
-      color: #fff;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 8px 0;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-
-    .ticker-inner {
-      display: inline-block;
-      animation: scroll-left 28s linear infinite;
-    }
-
-    .ticker-inner span {
-      margin: 0 48px;
-      opacity: 0.85;
-    }
-
-    @keyframes scroll-left {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* =============================================
-       SITE HEADER
-    ============================================= */
-    .site-header {
-      background: var(--paper);
-      border-bottom: 1px solid var(--border);
-      padding: 28px 40px 20px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .site-title {
-      font-family: var(--font-serif);
-      font-size: 42px;
-      font-weight: 600;
-      color: var(--forest);
-      line-height: 1;
-      letter-spacing: -0.5px;
-    }
-
-    .site-title em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--sand);
-    }
-
-    .site-tagline {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 6px;
-      font-style: italic;
-    }
-
-    .header-meta {
-      font-size: 12px;
-      color: var(--muted);
-      text-align: right;
-    }
-
-    .header-meta strong {
-      display: block;
-      font-size: 20px;
-      font-family: var(--font-serif);
-      color: var(--forest);
-      font-weight: 400;
-    }
-
-    /* =============================================
-       MAIN LAYOUT — sidebar + content
-    ============================================= */
-    .layout {
-      display: flex;
-      align-items: flex-start;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* =============================================
-       SIDEBAR
-    ============================================= */
-    .sidebar {
-      width: var(--sidebar-width);
-      flex-shrink: 0;
-      padding: 32px 24px 32px 0;
-      position: sticky;
-      top: 0;
-      max-height: 100vh;
-      overflow-y: auto;
-    }
-
-    .sidebar-block {
-      margin-bottom: 32px;
-    }
-
-    .sidebar-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar p {
-      font-size: 13.5px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .sidebar nav ul {
-      list-style: none;
-    }
-
-    .sidebar nav ul li {
-      margin-bottom: 2px;
-    }
-
-    .sidebar nav ul li a {
-      display: block;
-      padding: 5px 8px;
-      border-radius: 5px;
-      font-size: 14px;
-      color: var(--ink);
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .sidebar nav ul li a:hover {
-      background: var(--cream);
-      color: var(--forest);
-      text-decoration: none;
-    }
-
-    /* hit counter */
-    .hit-counter {
-      font-family: var(--font-serif);
-      font-size: 28px;
-      color: var(--forest);
-      font-weight: 600;
-      letter-spacing: 2px;
-    }
-
-    .hit-counter-label {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    /* places list */
-    .place-list {
-      list-style: none;
-    }
-
-    .place-list li {
-      font-size: 13px;
-      color: var(--muted);
-      padding: 3px 0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .place-list li::before {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--sand);
-      flex-shrink: 0;
-    }
-
-    /* divider between sidebar and main */
-    .sidebar-divider {
-      width: 1px;
-      background: var(--border);
-      align-self: stretch;
-      margin: 32px 0;
-    }
-
-    /* =============================================
-       MAIN CONTENT
-    ============================================= */
-    .main-content {
-      flex: 1;
-      padding: 32px 0 32px 32px;
-      min-width: 0;
-    }
-
-    /* =============================================
-       SECTION HEADINGS
-    ============================================= */
-    .section-heading {
-      font-family: var(--font-serif);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* =============================================
-       BLOG ENTRY CARDS
-    ============================================= */
-    .entry {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      margin-bottom: 24px;
-      overflow: hidden;
-      transition: box-shadow 0.2s;
-    }
-
-    .entry:hover {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-
-    /* A photo banner at top of entry */
-    .entry-image {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 0;
-    }
-
-    /* Placeholder image when no photo uploaded */
-    .entry-image-placeholder {
-      width: 100%;
-      height: 220px;
-      background: linear-gradient(135deg, #c8dbd5, #a8c5bc);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: var(--forest);
-      opacity: 0.6;
-      font-style: italic;
-    }
-
-    .entry-body {
-      padding: 24px 28px;
-    }
-
-    .entry-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .entry-date {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-
-    .entry-location {
-      font-size: 11px;
-      background: var(--cream);
-      color: var(--forest);
-      border: 1px solid var(--border);
-      padding: 2px 10px;
-      border-radius: 20px;
-    }
-
-    /* Who wrote this entry */
-    .entry-author {
-      font-size: 11px;
-      color: var(--sand);
-      font-style: italic;
-    }
-
-    .entry-title {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 10px;
-      line-height: 1.3;
-    }
-
-    .entry-text {
-      font-size: 14.5px;
-      color: #3a3830;
-      line-height: 1.75;
-    }
-
-    /* =============================================
-       MAP SECTION
-    ============================================= */
-    #map-section {
-      margin-bottom: 40px;
-    }
-
-    .map-container {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    /* The actual map goes inside here — powered by Leaflet.js */
-    #map {
-      height: 360px;
-      width: 100%;
-    }
-
-    /* =============================================
-       GUESTBOOK SECTION
-    ============================================= */
-    #guestbook {
-      margin-bottom: 40px;
-    }
-
-    .guestbook-form {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px 28px;
-      margin-bottom: 20px;
-    }
-
-    .guestbook-form h3 {
-      font-family: var(--font-serif);
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .guestbook-form p {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .form-row input,
-    .form-row textarea,
-    .guestbook-form textarea {
-      width: 100%;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 10px 14px;
-      font-family: var(--font-sans);
-      font-size: 14px;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.15s;
-      resize: vertical;
-    }
-
-    .form-row input:focus,
-    .form-row textarea:focus,
-    .guestbook-form textarea:focus {
-      border-color: var(--moss);
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--forest);
-      color: #fff;
-      font-family: var(--font-sans);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 10px 22px;
-      border: none;
-      border-radius: 7px;
-      cursor: pointer;
-      letter-spacing: 0.03em;
-      transition: background 0.15s;
-      margin-top: 10px;
-    }
-
-    .btn:hover { background: var(--moss); }
-
-    /* Individual guestbook entries */
-    .guestbook-entries {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .guestbook-entry {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
-    }
-
-    .guestbook-entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 6px;
-    }
-
-    .guestbook-name {
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    .guestbook-date {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .guestbook-msg {
-      font-size: 13.5px;
-      color: #4a4740;
-      line-height: 1.6;
-    }
-
-    /* empty state */
-    .empty-state {
-      text-align: center;
-      color: var(--muted);
-      font-size: 13px;
-      padding: 32px;
-      font-style: italic;
-    }
-
-    /* =============================================
-       FOOTER
-    ============================================= */
-    .site-footer {
-      border-top: 1px solid var(--border);
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* =============================================
-       RESPONSIVE — stack on small screens
-    ============================================= */
-    @media (max-width: 700px) {
-      .layout { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        position: static;
-        padding: 24px 0 0;
-        max-height: none;
-      }
-      .sidebar-divider { display: none; }
-      .main-content { padding: 24px 0; }
-      .site-header { padding: 20px; }
-      .site-title { font-size: 30px; }
-    }
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
   </style>
 </head>
-
 <body>
-
-  <!-- =============================================
-       TICKER BANNER
-  ============================================= -->
-  <div class="ticker-wrap" aria-label="Site ticker">
-    <!-- This text scrolls across the top of the page.
-         The content is duplicated so the scroll looks seamless. -->
-    <div class="ticker-inner">
-      <span>📍 Currently in Raglann, NZ</span>
-      <span>🌊 Our New Zealand travel log</span>
-      <span>📍 Currently in Raglann, NZ</span>
-      <span>🌊 Our New Zealand travel log</span>
-    </div>
-  </div>
-
-  <!-- =============================================
-       SITE HEADER
-  ============================================= -->
-  <header class="site-header">
-    <div>
-      <div class="site-title">Lily and Ryan's Travel Log</div>
-      <!--<div class="site-tagline">A year of wandering through the Land of the Long White Cloud</div>--!>
-
-    </div>
-    <div class="header-meta">
-      <strong id="current-date">—</strong>
-      Year one of one
-    </div>
-  </header>
-
-  <!-- =============================================
-       MAIN LAYOUT
-  ============================================= -->
-  <div class="layout">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-
-      <div class="sidebar-block">
-        <div class="sidebar-label">About</div>
-        <p>Hey! We're <strong>Lily and Ryan</strong> — we left the US for a year to hang out in New Zealand. This is our log.</p>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sidebar-label">Navigate</div>
-        <nav>
-          <ul>
-            <li><a href="#">📖 Journal</a></li>
-            <li><a href="#map-section">🗺️ Our map</a></li>
-            <li><a href="#guestbook">✍️ Guestbook</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sidebar-label">Places we've been</div>
-        <ul class="place-list" id="places-list">
-          <!-- Add a new <li> here each time you visit somewhere -->
-          <li>Hamilton</li>
-          <li>Rotorua</li>
-          <li>Tongariro</li>
-        </ul>
-      </div>
-
-      <div class="sidebar-block">
-        <div class="sidebar-label">Visitors</div>
-        <div class="hit-counter" id="hit-counter">—</div>
-        <div class="hit-counter-label">people have visited this page</div>
-      </div>
-
-      <!-- <div class="sidebar-block">
-        <div class="sidebar-label">Good links</div>
-        <nav>
-          <ul>
-            <li><a href="https://www.newzealand.com" target="_blank">NZ Tourism ↗</a></li>
-            <li><a href="https://www.doc.govt.nz" target="_blank">DOC NZ ↗</a></li>
-            <li><a href="https://www.campermate.co.nz" target="_blank">CamperMate ↗</a></li>
-          </ul>
-        </nav>
-      </div> --!>
-
-    </aside>
-
-    <!-- Thin vertical line between sidebar and content -->
-    <div class="sidebar-divider"></div>
-
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-
-      <!-- ---- MAP SECTION ---- -->
-      <section id="map-section" style="margin-top: 40px;">
-        <div class="section-heading">Where we've been</div>
-        <div class="map-container">
-          <div id="map"></div>
-        </div>
-      </section>
-
-      <!-- ---- JOURNAL ENTRIES ---- -->
-      <!-- ---
-      --- -->
-      <section id="journal">
-        <div class="section-heading">Journal</div>
-
-	{% for post in site.posts %}
-  	<article class="entry">
-
-	  <span class="entry-date">
- 	    {{ post.date | date: "%B %Y" }}
- 	  </span>
-
-	  <h2 class="entry-title">
-	    <a href="{{ post.url }}">{{ post.title }}</a>
-	  </h2>
-
-	  <p class='entry-text'>
-	    {{ post.excerpt }}
-	  </p>
-
-	</article>
-	{% endfor %}	    
-      </section>
-
-
-      <!-- ---- GUESTBOOK ---- -->
-      <section id="guestbook" style="margin-top: 40px;">
-        <div class="section-heading">Guestbook</div>
-
-        <div class="guestbook-form">
-          <h3>Leave us a note ✍️</h3>
-          <p>Say hi, share a tip, or just let us know you stopped by.</p>
-          <div class="form-row">
-            <input type="text" id="gb-name" placeholder="Your name" />
-            <input type="text" id="gb-location" placeholder="Where you're from (optional)" />
-          </div>
-          <textarea id="gb-message" rows="3" placeholder="Your message..."></textarea>
-          <button class="btn" onclick="submitGuestbook()">Sign the guestbook</button>
-        </div>
-
-        <!-- Guestbook entries load here from the database -->
-        <div class="guestbook-entries" id="guestbook-entries">
-          <div class="empty-state">No entries yet — be the first to sign!</div>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- =============================================
-       FOOTER
-  ============================================= -->
-  <!-- <footer class="site-footer">
-    Lost in Aotearoa &mdash; made with love somewhere on the road &middot; &copy; 2026
-  </footer> --!>
-
-
-  <!-- =============================================
-       LEAFLET MAP (open-source, free map library)
-  ============================================= -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <script>
-    // ---- DATE IN HEADER ----
-    // Shows today's date in the top-right corner
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const now = new Date();
-    document.getElementById('current-date').textContent =
-      `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-
-
-    // ---- MAP ----
-    // This creates a Leaflet map centred on New Zealand.
-    // Add a new L.marker() line each time you visit a new place!
-    const map = L.map('map').setView([-41.2, 174.9], 5);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Custom green pin colour to match the site
-    const greenIcon = L.divIcon({
-      className: '',
-      html: `<div style="width:12px;height:12px;background:#2D4A3E;border:2px solid white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
-      iconSize: [12, 12],
-      iconAnchor: [6, 6]
-    });
-
-    {% for post in site.posts %}
-      {% if post.lat and post.lng %}
-        L.marker([{{ post.lat | default: 0 }}, {{ post.lng | default: 0 }}], {icon: greenIcon})
-          .bindPopup("
-            <b><a href="{{ post.url }}">{{ post.title }}</a></b><br>
-            {{ post.location }}
-          ")
-          .addTo(map);
-      {% endif %}
-    {% endfor %}
-
-
-    // ---- HIT COUNTER ----
-    // This is a simple counter using localStorage so it's not a
-    // real server-side counter. When you connect Supabase, you
-    // can replace this with a real database count.
-    let visits = parseInt(localStorage.getItem('nz-visits') || '0') + 1;
-    localStorage.setItem('nz-visits', visits);
-    document.getElementById('hit-counter').textContent = visits.toLocaleString();
-
-
-    // ---- GUESTBOOK ----
-    // Right now this saves to the browser only (localStorage).
-    // When you set up Supabase, swap the save/load functions below
-    // with the Supabase versions — instructions are in the comments.
-
-    function loadGuestbook() {
-      const entries = JSON.parse(localStorage.getItem('nz-guestbook') || '[]');
-      const container = document.getElementById('guestbook-entries');
-
-      if (entries.length === 0) {
-        container.innerHTML = '<div class="empty-state">No entries yet — be the first to sign!</div>';
-        return;
-      }
-
-      container.innerHTML = entries.map(e => `
-        <div class="guestbook-entry">
-          <div class="guestbook-entry-header">
-            <span class="guestbook-name">${escapeHtml(e.name)}${e.location ? ' · <span style="color:var(--muted);font-weight:400">' + escapeHtml(e.location) + '</span>' : ''}</span>
-            <span class="guestbook-date">${e.date}</span>
-          </div>
-          <div class="guestbook-msg">${escapeHtml(e.message)}</div>
-        </div>
-      `).reverse().join('');
-    }
-
-    function submitGuestbook() {
-      const name    = document.getElementById('gb-name').value.trim();
-      const location = document.getElementById('gb-location').value.trim();
-      const message = document.getElementById('gb-message').value.trim();
-
-      if (!name || !message) {
-        alert('Please enter your name and a message!');
-        return;
-      }
-
-      const entries = JSON.parse(localStorage.getItem('nz-guestbook') || '[]');
-      entries.push({
-        name, location, message,
-        date: `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`
-      });
-      localStorage.setItem('nz-guestbook', JSON.stringify(entries));
-
-      // Clear the form
-      document.getElementById('gb-name').value = '';
-      document.getElementById('gb-location').value = '';
-      document.getElementById('gb-message').value = '';
-
-      loadGuestbook();
-    }
-
-    // Security helper — stops malicious text from breaking the page
-    function escapeHtml(str) {
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
-    // Load guestbook when the page opens
-    loadGuestbook();
-  </script>
+<p class="p1">---</p>
+<p class="p1">layout: default</p>
+<p class="p1">---</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;{{ site.title }}&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #f5f5f5;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.sidebar {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 250px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #fafafa;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.main {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>#map {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.entry {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.entry a {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: black;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.entry a:hover {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Ryan &amp; [GF Name] in New Zealand 🇳🇿&lt;/h1&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="sidebar"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Places Visited&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% for post in site.posts %}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;{{ post.title }}&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{% endfor %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="main"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- MAP --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="map"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- BLOG POSTS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Journal&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% for post in site.posts %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="entry"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;{{ post.excerpt }}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% endfor %}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var map = L.map('map').setView([-41.3, 174.7], 6);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>attribution: '&amp;copy; OpenStreetMap contributors'</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}).addTo(map);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% for post in site.posts %}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% if post.lat and post.lng %}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>L.marker([{{ post.lat }}, {{ post.lng }}])</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.addTo(map)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.bindPopup('&lt;a href="{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>{% endif %}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{% endfor %}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
 </body>
 </html>

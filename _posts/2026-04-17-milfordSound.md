@@ -1,10 +1,9 @@
 ---
+title: "Auckland"
+date: 2026-04-07
 layout: post
-title: "Exploring Milford Sound in Fiordland's National Park"
-date: 2026-04-17
-location: "Milford Sound"
-lat: -44.6414
-lng: 167.8974
+lat: -36.85
+lng: 174.76
 ---
 
 ## We were able to visit Milford sound today
