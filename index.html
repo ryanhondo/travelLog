@@ -1,134 +1,118 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+---
+layout: default
+---
+
+<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="utf-8">
+  <title>{{ site.title }}</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background: #fafafa;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    #map {
+      height: 400px;
+      margin-bottom: 40px;
+      border-radius: 10px;
+    }
+
+    .entry {
+      margin-bottom: 30px;
+    }
+
+    .entry a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .entry a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
+
 <body>
-<p class="p1">---</p>
-<p class="p1">layout: default</p>
-<p class="p1">---</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="utf-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;{{ site.title }}&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: Arial, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #f5f5f5;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.sidebar {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 250px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #fafafa;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.main {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex: 1;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>#map {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 400px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entry {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entry a {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: none;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: black;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.entry a:hover {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-decoration: underline;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;h1&gt;Ryan &amp; [GF Name] in New Zealand 🇳🇿&lt;/h1&gt;</p>
-<p class="p1">&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="container"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="sidebar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h3&gt;Places Visited&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{% for post in site.posts %}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;{{ post.title }}&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>{% endfor %}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="main"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- MAP --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="map"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- BLOG POSTS --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;Journal&lt;/h2&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>{% for post in site.posts %}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="entry"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;a href="{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;{{ post.excerpt }}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{% endfor %}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script src="https://unpkg.com/leaflet/dist/leaflet.js"&gt;&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var map = L.map('map').setView([-41.3, 174.7], 6);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>attribution: '&amp;copy; OpenStreetMap contributors'</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}).addTo(map);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>{% for post in site.posts %}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{% if post.lat and post.lng %}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>L.marker([{{ post.lat }}, {{ post.lng }}])</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.addTo(map)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bindPopup('&lt;a href="{{ post.url }}"&gt;{{ post.title }}&lt;/a&gt;');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{% endif %}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>{% endfor %}</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<header>
+  <h1>Ryan & [GF Name] in New Zealand 🇳🇿</h1>
+</header>
+
+<div class="container">
+
+  <div class="sidebar">
+    <h3>Places Visited</h3>
+    <ul>
+      {% for post in site.posts %}
+        <li>{{ post.title }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="main">
+
+    <!-- MAP -->
+    <div id="map"></div>
+
+    <!-- BLOG POSTS -->
+    <h2>Journal</h2>
+
+    {% for post in site.posts %}
+      <div class="entry">
+        <h3>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h3>
+        <p>{{ post.excerpt }}</p>
+      </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  var map = L.map('map').setView([-41.3, 174.7], 6);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  {% for post in site.posts %}
+    {% if post.lat and post.lng %}
+      L.marker([{{ post.lat }}, {{ post.lng }}])
+        .addTo(map)
+        .bindPopup('<a href="{{ post.url }}">{{ post.title }}</a>');
+    {% endif %}
+  {% endfor %}
+</script>
+
 </body>
 </html>
